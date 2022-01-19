@@ -1,17 +1,22 @@
 <template>
   <div>
       <ul>
-          <TodoItem v-for="item in todoItems" :key="item.id" :item="item" @checked="checkCheck(item)"/>
+          <TodoItem v-for="item in currentArray" :key="item.id" :item="item" @checked="checkCheck(item)"/>
       </ul>
   </div>
 </template>
 
 <script>
 import TodoItem from "./TodoItem.vue"
+
 export default {
     name: 'TodoList',
     components: {TodoItem},
-    props: ['todoItems'],
+    props: 
+            {
+            showDone: Boolean,
+            currentArray: Array
+            },
     methods: {
         checkCheck(item){
             this.$emit('checked', item)
