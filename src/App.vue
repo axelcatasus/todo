@@ -1,17 +1,23 @@
 <template>
   <div id="app">
-    <div v-if="menuOpen" @click="menuOpen = false" class="blur"></div>
+    <transition name="blur">
+      <div v-if="menuOpen" @click="menuOpen = false" class="blur"></div>
+    </transition>
+    <transition name="slide-fade">
       <TodoMenu v-if="menuOpen" @signal="doneToggle" @delete="deleteTodos" @clear="clearTodos" :showDone="showDone" @close="menuOpen = false"/>
-        <img class="hamburger" src="./assets/menu.svg" width="30px" alt="Open Menu" @click="menuOpen = true">
-        <img class="logo" src="./assets/teflon-panna.svg" width="100px">
-        <h1 class="header">TEFLON</h1>
-        <span>När det inte fastnar</span>
-        <p>Du har <b>{{itemsLeft}}</b> todos kvar att göra</p>
-        <TodoList :currentArray="currentArray" @checked="checkValue"/>
+    </transition>
+      <img class="hamburger" src="./assets/menu.svg" alt="Open Menu" @click="menuOpen = true">
+      <img class="logo" src="./assets/teflon-panna.svg" width="100px">
+      <h1 class="header">TEFLON</h1>
+      <span>När det inte fastnar</span>
+      <p>Du har <b>{{itemsLeft}}</b> todos kvar att göra</p>
+      <TodoList :currentArray="currentArray" @checked="checkValue"/>
+      <transition name="add-item">
         <form v-on:submit.prevent="addItem">
           <input type="text" v-model="newItem">
           <button>Lägg till todo</button>
         </form>
+      </transition>
   </div>
 </template>
 
@@ -99,11 +105,13 @@ export default {
  
 }
 
+
 .blur {
   position: absolute;
   background: rgba(0, 0, 0, .5);
   width: 100%;
   height: 100%;
+  transition: all 1000ms;
 }
 
 body {
@@ -124,7 +132,9 @@ body {
   padding: 0 1rem 0 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
+  justify-content: center;
+  z-index: 1
 }
 
 .header{
@@ -144,11 +154,12 @@ p{
 
 form {
   display: flex;
-  width: 100%;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   border: solid 1px black;
   margin-top: .5rem;
+  align-self: stretch;
 }
 
 form button {
@@ -158,6 +169,10 @@ form button {
   width: 100%;
   border-style: none;
   background: rgb(34, 34, 34);
+}
+
+form button:hover {
+  background: rgb(54, 54, 54);
 }
 
 input {
@@ -172,8 +187,51 @@ input {
 }
 
 .hamburger {
+  position: fixed;
+  top: 0rem;
+  right: 1rem;
   align-self: flex-end;
   margin-top: 1rem;
+  width: 2.5rem;
+}
+
+.hamburger:hover {
+  filter:opacity(.5)
+}
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .3s ease;
+}
+
+.slide-fade-enter {
+  transform: translateX(30rem);
+  transition: all .3s ease;
+  opacity: 1;
+}
+
+.slide-fade-leave-to {
+  transform: translateX(30rem);
+  transition: all .3s ease;
+  opacity: 1;
+}
+
+.blur-enter {
+  background: none;
+}
+
+.blur-enter-active {
+  transition: all .3s ease;
+}
+
+.blur-leave-active {
+  transition: all .3s ease;
+}
+
+.blur-leave-to {
+  background: none;
 }
 
 

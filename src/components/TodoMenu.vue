@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <img class="hamburger" src="../assets/close.svg" width="30px" alt="Open Menu" @click="$emit('close')">
+    <img class="close" src="../assets/close.svg" alt="Open Menu" @click="$emit('close')">
     <button @click="$emit('signal')" :class="{hide : showDone, 'show':!showDone}">{{toggle}} done todos</button>
     <button class="delete" @click="$emit('delete')">Delete done todos</button>
     <button class="clear" @click="$emit('clear')">Clear all data</button>
@@ -33,9 +33,10 @@ export default {
   height: 100%;
   width: 80vw;
   position: absolute;
-  background: cornflowerblue;
+  background: white;
   top: 0;
   right: 0;
+  z-index: 2;
   /* border-radius: 10px; */
   /* border: solid 10px black; */
   display: flex;
@@ -48,6 +49,16 @@ export default {
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, .5);
+}
+
+.close {
+  align-self: flex-end;
+  margin-top: 1rem;
+  width: 2.5rem;
+}
+
+.close:hover {
+  filter:opacity(.5)
 }
 
 img {
@@ -82,8 +93,11 @@ button:hover {
 
 .clear {
   background: url(../assets/delete_forever.svg) no-repeat center left 2rem rgb(255, 206, 208);
-  margin-top: 20rem;
-  
+  margin-top: 25rem; 
+}
+
+.clear:hover {
+  background-color: rgb(255, 100, 100)
 }
 
 </style>
