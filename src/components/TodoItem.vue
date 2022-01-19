@@ -21,6 +21,7 @@ export default {
     padding: .5rem;
     margin: 0.5rem 0;
     background: gainsboro;
+    height: 2.5rem;
   }
   input {
     accent-color: darkgray;
@@ -32,6 +33,9 @@ export default {
     display: none;
   }
 
+  input {
+    margin-right: .5rem;
+  }
   .show {
     display: block;
   }

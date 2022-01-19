@@ -1,9 +1,9 @@
 <template>
   <div class="menu">
-    <img class="hamburger" src="../assets/close.svg" width="20px" alt="Open Menu" @click="$emit('close')">
-    <button @click="$emit('signal')">{{toggle}} done todos</button>
-    <button @click="$emit('delete')">Delete done todos</button>
-    <button @click="$emit('clear')">Clear all data</button>
+    <img class="hamburger" src="../assets/close.svg" width="30px" alt="Open Menu" @click="$emit('close')">
+    <button @click="$emit('signal')" :class="{hide : showDone, 'show':!showDone}">{{toggle}} done todos</button>
+    <button class="delete" @click="$emit('delete')">Delete done todos</button>
+    <button class="clear" @click="$emit('clear')">Clear all data</button>
   </div>
 </template>
 
@@ -28,13 +28,12 @@ export default {
 
 <style scoped>
 
-.menu {
+.menu { 
   box-sizing: border-box;
   height: 100%;
-  width: 80%;
+  width: 90vw;
   position: absolute;
-  background: DARKsalmon;
-  padding: 3rem;
+  background: cornflowerblue;
   top: 0;
   right: 0;
   /* border-radius: 10px; */
@@ -42,14 +41,47 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  }
+
+.menu-mask{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, .5);
+}
+
+button {
+  border: none;
+  font-size: 1rem;
+  text-align: left;
+  padding-left: 4rem;
+  margin-top: 1rem;
+  height: 4rem;
+  width: 100%;
 }
 
 button:hover {
-  background: peru;
+  background-color: lightgray;
 }
-button {
-  font-size: 2rem;
-  width: 100%;
+
+.hide {
+  background: url(../assets/visibility_off.svg) no-repeat center left 2rem rgb(241, 236, 236)	
+}
+
+.show {
+  background: url(../assets/visibility.svg) no-repeat center left 2rem rgb(241, 236, 236)
+}
+
+.delete {
+  background: url(../assets/delete.svg) no-repeat center left 2rem rgb(241, 236, 236)
+}
+
+.clear {
+  background: url(../assets/delete_forever.svg) no-repeat center left 2rem rgb(255, 206, 208);
+  margin-top: 20rem;
+  
 }
 
 </style>
