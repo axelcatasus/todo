@@ -1,16 +1,15 @@
 <template>
-  <div class="wrapper">
   <div id="app">
+  <TodoMenu v-if="menuOpen" @signal="doneToggle" @delete="deleteTodos" @clear="clearTodos" :showDone="showDone" @close="menuOpen = false"/>
+    <img class="hamburger" src="./assets/menu.svg" width="20px" alt="Open Menu" @click="menuOpen = true">
     <h2>TEFLON</h2>
     <span>När det inte fastnar</span>
-    <p>{{itemsLeft}} todos left</p>
+    <p>Du har <b>{{itemsLeft}}</b> todos kvar att göra</p>
     <TodoList :currentArray="currentArray" @checked="checkValue"/>
     <form v-on:submit.prevent="addItem">
       <input type="text" v-model="newItem">
       <button>Add Item</button>
     </form>
-  </div>
-  <TodoMenu @signal="doneToggle" @delete="deleteTodos" @clear="clearTodos" :showDone="showDone"/>
   </div>
 </template>
 
@@ -26,7 +25,8 @@ export default {
   data(){return{
     todoItems: [],  
     showDone: true,
-    newItem: ""
+    newItem: "",
+    menuOpen: false
   }},
   beforeMount(){
     if(localStorage.getItem("showDone")){
@@ -94,21 +94,46 @@ export default {
 body {
   min-height: 100vh;
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: center;
   background: gainsboro;
-  font-size: 3rem;
+  margin: 0;
+}
+
+form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px black;
+}
+
+form button {
+  font-size: 2rem;
+  width: 100%;
+  border-style: none;
+}
+
+input {
+  box-sizing: border-box;
+  border-radius: 0;
+  border: none;
+  width: 100%;
+  font-size: 2rem;
 }
 
 #app {
+  height: 100vh;
+  width: 100%;
+  position: relative;
   background: tomato;
-  padding: 3rem;
-  border-radius: 10px;
-  border: solid 10px black;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  align-items: center;  
 }
 
+.hamburger {
+  align-self: flex-end;
+}
 
 </style>

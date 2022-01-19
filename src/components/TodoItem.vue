@@ -18,15 +18,14 @@ export default {
   li{
     display: flex;
     align-items: center;
-    padding: 1rem;
-    margin: 0rem;
-    margin-top: .5rem;
-    background: lightcoral;
+    padding: .5rem;
+    margin: 0.5rem 0;
+    background: gainsboro;
   }
   input {
-    accent-color: rebeccapurple;
-    width: 40px;
-    height: 40px;
+    accent-color: darkgray;
+    width: 20px;
+    height: 20px;
   }
   
   .hidden {
