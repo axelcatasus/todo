@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div v-if="menuOpen" @click="menuOpen = false" class="blur"></div>
       <TodoMenu v-if="menuOpen" @signal="doneToggle" @delete="deleteTodos" @clear="clearTodos" :showDone="showDone" @close="menuOpen = false"/>
         <img class="hamburger" src="./assets/menu.svg" width="30px" alt="Open Menu" @click="menuOpen = true">
         <img class="logo" src="./assets/teflon-panna.svg" width="100px">
@@ -98,9 +99,16 @@ export default {
  
 }
 
+.blur {
+  position: absolute;
+  background: rgba(0, 0, 0, .5);
+  width: 100%;
+  height: 100%;
+}
+
 body {
   min-height: 100vh;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   background: gainsboro;
   margin: 0 auto;
@@ -110,10 +118,10 @@ body {
 
 #app {
   height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
   position: relative;
   background: white;
-  padding: 1rem;
+  padding: 0 1rem 0 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;  
@@ -165,6 +173,7 @@ input {
 
 .hamburger {
   align-self: flex-end;
+  margin-top: 1rem;
 }
 
 

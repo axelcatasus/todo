@@ -31,7 +31,7 @@ export default {
 .menu { 
   box-sizing: border-box;
   height: 100%;
-  width: 90vw;
+  width: 80vw;
   position: absolute;
   background: cornflowerblue;
   top: 0;
@@ -41,15 +41,17 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
   }
 
 .menu-mask{
-  box-sizing: border-box;
+  
   width: 100%;
-  height: 100%;
-  position: fixed;
+  height: 100vh;
   background: rgba(0, 0, 0, .5);
+}
+
+img {
+  margin: 1rem;
 }
 
 button {
@@ -57,7 +59,7 @@ button {
   font-size: 1rem;
   text-align: left;
   padding-left: 4rem;
-  margin-top: 1rem;
+  margin-bottom: 1rem;
   height: 4rem;
   width: 100%;
 }
